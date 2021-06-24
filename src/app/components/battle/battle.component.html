@@ -1,0 +1,36 @@
+<div class="general">
+  <div class="battle hideGif" #getReady>
+    <div class="box1 boxShow" #getReady2>
+      <div class="char1 animate__animated" #battleRunLeft #knightImage></div>
+      <div id="myPlayer" class="name">Name</div>
+      <div class="hp ri">:HP</div>
+      <div id="mpHP" class="hp">HP: 0</div>
+      <div class="atk ri">:ATK</div>
+      <div id="mpAtk" class="atk">ATK: 0</div>
+      <div class="int ri">:INT</div>
+      <div id="mpInt" class="int">INT: 0</div>
+    </div>
+    <div class="box2 boxShow" #getReady3>
+      <div class="char2 animate__animated" #battleRunRight #dragonImage></div>
+      <div id="adversary" class="name">Name</div>
+      <div class="hp li">HP:</div>
+      <div id="advHP" class="hp">HP: 0</div>
+      <div class="atk li">ATK:</div>
+      <div id="advAtk" class="atk">ATK: 0</div>
+      <div class="int li">INT:</div>
+      <div id="advInt" class="int">INT: 0</div>
+    </div>
+    <button class="btn" (click)='hideGif(getReady)' (click)='boxShow(getReady2, getReady3, getReady4, getReady5)' #getReady5>Enter the fight</button>
+    <button class="btn2 buttonBlock" (click)='fightTime(knightImage, dragonImage)' #getReady4>Start the fight</button>
+    <!-- (click)='startFight(battleRunLeft, battleRunRight)'  -->
+    <div class="closetBox hideCloset">
+      <div class="silver"></div>
+      <div class="gold"></div>
+      <div class="lion"></div>
+      <div class="romeo"></div>
+      <div class="robin"></div>
+      <div class="spartacus"></div>
+    </div>
+    <button class="btn3" >Closet</button>
+  </div>
+</div>

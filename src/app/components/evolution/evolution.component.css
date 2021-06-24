@@ -1,0 +1,226 @@
+* {
+	box-sizing: border-box;
+}
+
+.general {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;;
+  background: rgb(0,75,35);
+  background: linear-gradient(90deg, rgba(0,75,35,1) 0%, rgba(204,255,51,1) 100%);
+}
+
+.screen {
+  text-align: center;
+  background-color: transparent;
+  background-image: url(https://www.brawlhalla.com/c/uploads/2015/11/GreatHall1.jpg);
+  background-size: contain;
+  border-radius: 1.250rem;
+  box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 101.25rem;
+  height: 49.9rem;
+}
+
+.text {
+  color: white;
+  font-size: 1.6rem;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  margin: 5rem;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+.title {
+  font-size: 1.9rem;
+}
+
+.p1 {
+  left: 25%;
+  right: 25%;
+}
+
+.atk {
+  position: absolute;
+  width: 9rem;
+  height: 3rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  top: 25%;
+  right: 35%;
+}
+
+.def {
+  position: absolute;
+  width: 9rem;
+  height: 3rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  top: 35%;
+  right: 35%;
+}
+
+.exp {
+  position: absolute;
+  width: 9rem;
+  height: 3rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  top: 45%;
+  right: 35%;
+}
+
+.left {
+  position: absolute;
+  float: left;
+  width: 3rem;
+  height: 3rem;
+  top: 0%;
+  left: 0%;
+  background-image: url(https://image.flaticon.com/icons/png/512/32/32195.png);
+  background-repeat: no-repeat;
+  background-size: 2.5rem 2.5rem;
+  background-position: center;
+}
+
+.right {
+  position: absolute;
+  float: right;
+  width: 3rem;
+  height: 3rem;
+  top: 0%;
+  right: 0%;
+  background-image: url(https://image.flaticon.com/icons/png/512/32/32323.png);
+  background-repeat: no-repeat;
+  background-size: 2.5rem 2.5rem;
+  background-position: center;
+}
+
+.mid {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  top: 0%;
+  right: 3rem;
+}
+
+.txtI {
+  width: 3rem;
+  height: 2rem;
+  color: white;
+  font-size: 1.6rem;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  margin-left: 0%;
+  margin-right: 0%;
+  bottom: 0%;
+  left: 3rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.char {
+  position: absolute;
+  width: 16rem;
+  height: 36rem;
+  top: 25%;
+  left: 35%;
+  background-image: url(https://www.pngix.com/pngfile/big/480-4806187_rolandsplash-sir-roland-brawlhalla-hd-png-download.png);
+  background-size: contain;
+}
+
+.csInfo{
+  width: 4.5rem;
+  height: auto;
+  color: white;
+  font-size: 1.6rem;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  margin-left: 0%;
+  margin-right: 0%;
+  justify-content: center;
+  text-align: center;
+  vertical-align: center;
+}
+
+.pt {
+  width: 9rem;
+  top: 50%;
+  right: 35%;
+}
+
+.pl1 {
+  top: 55%;
+  right: 40rem;
+  height: 2rem;
+}
+
+.pl2 {
+  top: 60%;
+  right: 40rem;
+  height: 2rem;
+}
+
+.pl3 {
+  top: 65%;
+  right: 40rem;
+  height: 2rem;
+}
+
+.i1 {
+  top: 55%;
+  right: 35%;
+  height: 2rem;
+}
+
+.i2 {
+  top: 60%;
+  right: 35%;
+  height: 2rem;
+}
+
+.i3 {
+  top: 65%;
+  right: 35%;
+  height: 2rem;
+}
+
+.pn {
+  width: 9rem;
+  top: 70%;
+  right: 35%;
+}
+
+.btn {
+  border-radius: 1.25rem;
+	border: 0.063rem solid green;
+	background-color: green;
+	color: #FFFFFF;
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0.75rem 2.813rem;
+	letter-spacing: 0.063rem;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  position: absolute;
+  top: 82%;
+  left: 55.5%;
+  transform: translateY(-50%);
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.btn.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}

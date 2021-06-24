@@ -1,0 +1,30 @@
+<div class="general">
+  <div class="screen">
+    <p class="text title p1">This is the gym, you can upgrade your knight here every day, three points per day.</p>
+    <div class="char"></div>
+    <div class="atk">
+      <div class="left" (click)='downNumber(nbA)'></div>
+      <div class="mid">ATK</div>
+      <div class="right" (click)='upNumber(nbA)'></div>
+      <input value="0" readonly="readonly" class="txtI pa"  #nbA>
+    </div>
+    <div class="def">
+      <div class="left" (click)='downNumber(nbD)'></div>
+      <div class="mid">DEF</div>
+      <div class="right" (click)='upNumber(nbD)'></div>
+      <input value="0" readonly="readonly" class="txtI pd" #nbD>
+    </div>
+    <div class="exp">
+      <div class="left" (click)='downNumber(nbE)'></div>
+      <div class="mid">EXP</div>
+      <div class="right" (click)='upNumber(nbE)'></div>
+      <input value="0" readonly="readonly" class="txtI pe" #nbE>
+    </div>
+    <p class="csInfo pt">Current Stats:</p>
+    <p class="csInfo pl1" >Atk:</p> <p id="atk" readonly="readonly" class="csInfo i1">?</p>
+    <p class="csInfo pl2" >Def:</p> <p id="def" readonly="readonly" class="csInfo i2">?</p>
+    <p class="csInfo pl3" >Exp:</p> <p id="exp" readonly="readonly" class="csInfo i3">?</p>
+    <p class="csInfo pn" id="user">Player Name</p>
+    <button class="btn" (click)='upgradeTime(nbA, nbE, nbD)'>Upgrade</button>
+  </div>
+</div>

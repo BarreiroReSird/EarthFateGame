@@ -1,0 +1,31 @@
+<div class="general">
+  <div class="screen">
+    <div class="left">
+      <div class="myP"></div>
+    </div>
+    <div class="right">
+      <p class="text title">Here, you will create your character, you have 30 points to do so!</p>
+
+      <p class="text un b3" >Your username:</p>
+      <input type="text" class="text un b4" #user>
+
+      <p class="text pw b3" >Your password:</p>
+      <input type="password" class="text pw b4" #pass>
+
+      <p class="text cn b3" >Character name:</p>
+      <input type="text" class="text cn b4" #name>
+
+      <p class="text other1 b1" >Atk:</p>
+      <input type="number" class="text other1 b2" #atk>
+
+      <p class="text other2 b1" >Def:</p>
+      <input type="number" class="text other2 b2" #lp>
+
+      <p class="text other3 b1" >Exp:</p>
+      <input type="number" class="text other3 b2" #int>
+
+      <button class="btn" (click)='pointsCheck(atk, lp, int, bba, bbr)' #bba>Check!</button>
+      <button class="btn buttonBlock" (click)='createChar(name, atk, int, lp, user, pass)' #bbr>Ready!</button>
+    </div>
+  </div>
+</div>

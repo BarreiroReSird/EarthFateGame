@@ -1,0 +1,22 @@
+<div class="fbd">
+  <h1 class="title">Login here! or if you don't have an account, Register!</h1>
+  <div class="container" id="container">
+	  <div class="formContainer registerContainer">
+		  <!-- <form action="#"> -->
+			<h1 class="subtitle">Create Account</h1>
+			<input class="txt" type="text" placeholder="Username" #userR/>
+			<input class="txt" type="password" placeholder="Password" #passR/>
+			<input class="txt" type="password" placeholder="Password Confirm" #passCR/>
+			<button class="btn" (click)="register(userR.value, passR.value, passCR)">Sign Up</button>
+		  <!-- </form> -->
+	  </div>
+	  <div class="formContainer loginContainer">
+		  <!-- <form action="#"> -->
+			<h1 class="subtitle">Sign in</h1>
+			<input class="txt" type="text" placeholder="Username" #user/>
+			<input class="txt" type="password" placeholder="Password" #pass/>
+			<button class="btn" (click)="login(user.value, pass.value)">Sign In</button>
+		  <!-- </form> -->
+	  </div>
+  </div>
+</div>

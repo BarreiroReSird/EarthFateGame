@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+}
+
+.general {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;;
+  background: rgb(0,75,35);
+  background: linear-gradient(90deg, rgba(0,75,35,1) 0%, rgba(204,255,51,1) 100%);
+}
+
+.screen {
+  text-align: center;
+  background-color: transparent;
+  background-image: url(https://i.pinimg.com/originals/54/44/99/5444997d471ba93836ae62a0d5392cc8.jpg);
+  background-size: contain;
+  border-radius: 1.250rem;
+  box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 101.25rem;
+  height: 49.9rem;
+}
+
+.topText {
+  color: white;
+  font-size: 2rem;
+}
+
+.botText {
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  bottom: 0%;
+}
+
+.opa {
+  background-color: black;
+  opacity: 0.6;
+}

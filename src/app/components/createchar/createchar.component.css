@@ -1,0 +1,162 @@
+* {
+	box-sizing: border-box;
+}
+
+.general {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;;
+  background: rgb(0,75,35);
+  background: linear-gradient(90deg, rgba(0,75,35,1) 0%, rgba(204,255,51,1) 100%);
+}
+
+.screen {
+  text-align: center;
+  background-color: transparent;
+  background-image: url(https://i.pinimg.com/originals/d5/fe/65/d5fe654cb0c4431f58f6e1d1f4124ff5.png);
+  background-size: contain;
+  border-radius: 1.250rem;
+  box-shadow: 0 0.875rem 1.75rem rgba(0,0,0,0.25), 0 0.625rem 0.625rem rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 101.25rem;
+  height: 49.9rem;
+}
+
+.left {
+  opacity: 1;
+  float: left;
+  background-color: transparent;
+  /*background-color: red;*/
+  height: 50rem;
+  width: 50rem;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.myP {
+  background-image: url(https://lh3.googleusercontent.com/pw/ACtC-3f-kRkP_aNRLQGWBVUhb3tSw4nOo-gd3VuAelQI5O7h91qAY9CeoFuM1lKqnPmK0g5K7hxtDlhJfcaqWgB85-1lQIcJDmH3uXaTfoCaeTDb-hA_F_gwInHQ3Yky2r1wpsOFIEuWwvkNIilfnuOU-Apz=w752-h939-no?authuser=0);
+  background-size: contain;
+  height: 38rem;
+  width: 30rem;
+  position: absolute;
+  top: 4.688rem;
+}
+
+.right {
+  opacity: 1;
+  float: right;
+  background-color: transparent;
+  /*background-color: yellow;*/
+  height: 50rem;
+  width: 50rem;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 0%;
+}
+
+.text {
+  color: white;
+  font-size: 1.6rem;
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+  margin: 5rem;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+.title {
+  font-size: 1.9rem;
+}
+
+.other1 {
+  top: 13rem;
+}
+
+.other2 {
+  top: 16rem;
+}
+
+.other3 {
+  top: 19rem;
+}
+
+.b1 {
+  left: 40%;
+}
+
+.b2 {
+  right: 40%;
+  width: 5rem;
+}
+
+.b3 {
+  right: 62%;
+}
+
+.b4{
+  right: 18%;
+}
+
+.un {
+  top: 4rem;
+}
+
+.pw {
+  top: 7rem;
+}
+
+.cn {
+  top: 10rem;
+}
+
+.btn {
+  top: 30rem;
+  border-radius: 1.25rem;
+  border: none;
+	background-color: green;
+	color: #FFFFFF;
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0.75rem 2.813rem;
+	letter-spacing: 0.063rem;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  position: absolute;
+}
+
+.btn:active {
+	transform: scale(0.95);
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.btn.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+.buttonBlock {
+  display: none !important;
+}
+
+

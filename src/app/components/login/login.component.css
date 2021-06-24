@@ -1,0 +1,147 @@
+* {
+	box-sizing: border-box;
+}
+
+.fbd {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-attachment: fixed;;
+  background: rgb(0,75,35);
+  background: linear-gradient(90deg, rgba(0,75,35,1) 0%, rgba(204,255,51,1) 100%);
+}
+
+.title {
+  color: white;
+  margin-bottom: 2vh;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+button {
+	border-radius: 20px;
+	border: 1px solid green;
+	background-color: green;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+button:active {
+	transform: scale(0.95);
+}
+
+button:focus {
+	outline: none;
+}
+
+button.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+form {
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.container {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+}
+
+
+/* Final -------------------------------------------------------------------------------------------- */
+
+.formContainer { /*Painel do geral*/
+	/*position: absolute;*/
+	top: 0;
+	height: 100%;
+  width: 100%;
+	transition: all 0.6s ease-in-out;
+  color: green;
+}
+
+.registerContainer { /*Painel do registo (direito)*/
+  opacity: 1;
+  text-align: center;
+  padding-top: 10vh;
+  background-color: white;
+  width: 50%;
+  float: right;
+}
+
+.loginContainer { /*Painel do login (esquerdo)*/
+  opacity: 1;
+  text-align: center;
+  padding-top: 10vh;
+  background-color: black;
+  width: 50%;
+}
+
+.subtitle {
+  margin-bottom: 2vh;
+}
+
+.txt {
+  width: 75%;
+}
+
+.btn {
+  margin-top: 2vh;
+}
