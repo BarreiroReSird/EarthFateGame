@@ -1,27 +1,47 @@
 # EarthFate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+Author: Carlos Barreiro
 
-## Development server
+Portfolio project. A simple browser game made with Angular 11 (RPG style: create character, train stats and fight random characters).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Frontend: Angular 11.2.3
+Expected backend: API at localhost:3000/api/v1 (separate repository)
 
-## Code scaffolding
+## Run the project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install dependencies:
+```
+npm install --legacy-peer-deps
+```
+
+Start development server:
+```
+ng serve
+```
+Open in the browser `http://localhost:4200/`.
+
+## Node.js 17+ | Error ERR_OSSL_EVP_UNSUPPORTED
+
+Angular 11 uses an old webpack version. It does not work with OpenSSL 3, which is the default in Node 17 or newer. If you see this error, run before your command:
+
+Windows PowerShell:
+```
+$env:NODE_OPTIONS="--openssl-legacy-provider"
+```
+
+Linux / macOS:
+```
+export NODE_OPTIONS="--openssl-legacy-provider"
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+ng build
+```
 
-## Running unit tests
+The final files are stored in the `dist/` folder.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Notes
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This project was created with Angular CLI 11.2.3.
