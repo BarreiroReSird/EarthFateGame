@@ -1,3 +1,4 @@
+// Author: Carlos Barreiro
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,7 +8,21 @@ export class AdversarysService {
 
   constructor() { }
 
-  /* Dados do adversario */
+  /* Enemy character data */
+  player: any = {
+    name: "Dragon",
+    id: "",
+    atk: 0,
+    isMonster: false,
+    intelligence: 0,
+    health: 0,
+    img: "",
+    idPlayer: ""
+  };
+
+  /*
+  OLD VERSION (PT string fields + typo isMonset):
+
   player: any = {
     name: "Dragon",
     id: "",
@@ -18,4 +33,5 @@ export class AdversarysService {
     img: "",
     idPlayer: ""
   };
+  */
 }

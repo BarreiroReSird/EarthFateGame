@@ -1,3 +1,4 @@
+// Author: Carlos Barreiro
 import { Component, Input, OnInit } from '@angular/core';
 import { LoginsService } from 'src/app/services/logins.service';
 import { PlayersService } from 'src/app/services/players.service';
@@ -71,6 +72,82 @@ export class EvolutionComponent implements OnInit {
       /* upgrade */
       if (tot == 3) {
         this.loginService.upgradeStats(
+          this.playerService.player.id,
+          parseInt(this.playerService.player.atk) + xVal,
+          parseInt(this.playerService.player.intelligence) + yVal,
+          parseInt(this.playerService.player.health) + zVal).
+          subscribe(() => {
+            this.charStats();
+            this.load();
+          });
+      } else {
+        alert('Values are not 3!');
+      }
+    } else {
+      alert('You can only train once a day, and it has not been a full day yet!');
+      this.router.navigate(['/login']);
+    }
+
+
+
+  }
+
+  charStats() {
+    this.loginService.charStats(this.playerService.playerID).subscribe((data: any) => {
+      this.playerService.player.name = data.name;
+      this.playerService.player.id = data.id;
+      this.playerService.player.atk = data.atk;
+      this.playerService.player.isMonster = data.isMonster;
+      this.playerService.player.intelligence = data.intelligence;
+      this.playerService.player.health = data.health;
+      this.playerService.player.img = data.img;
+      this.playerService.player.idPlayer = data.idPlayer;
+      this.load();
+    });
+  }
+
+  load() {
+    let user = document.getElementById('user');
+    let atk = document.getElementById('atk');
+    let def = document.getElementById('def');
+    let exp = document.getElementById('exp');
+    user.innerText = this.playerService.player.name;
+    /*this.inputHelp(atk, def, exp);*/
+    atk.innerText = this.playerService.player.atk;
+    def.innerText = this.playerService.player.health;
+    exp.innerText = this.playerService.player.intelligence;
+    console.log(this.playerService.player.name, this.playerService.player.atk, this.playerService.player.health, this.playerService.player.intelligence);
+  }
+
+  /*
+  inputHelp(atk: HTMLElement, def: HTMLInputElement, exp:HTMLInputElement) {
+    let x, y, z;
+
+    x = this.playerService.player.atk;
+    y = this.playerService.player.health;
+    z = this.playerService.player.intelligence;
+
+    atk.value = x;
+    def.value = y;
+    exp.value = z;
+  }*/
+
+  /*
+  OLD VERSION (.int/.lp fields and if data['code']==200 checks):
+
+  upgradeTime(nbA: HTMLInputElement, nbE: HTMLInputElement, nbD: HTMLInputElement) {
+    if (!this.oneDayHasPassed()) {
+      let xVal = 0;
+      let yVal = 0;
+      let zVal = 0;
+      let tot = 0;
+      xVal = parseInt(nbA.value);
+      yVal = parseInt(nbE.value);
+      zVal = parseInt(nbD.value);
+      tot = xVal + yVal + zVal;
+      console.log('x y z', xVal, yVal, zVal);
+      if (tot == 3) {
+        this.loginService.upgradeStats(
           parseInt(this.playerService.player.atk) + xVal,
           parseInt(this.playerService.player.int) + yVal,
           parseInt(this.playerService.player.lp) + zVal).
@@ -90,12 +167,9 @@ export class EvolutionComponent implements OnInit {
         alert('Values are not 3!');
       }
     } else {
-      alert('You can only train once a day, and it hasnt been a day yet!');
+      alert('You can only train once a day, and it has not been a full day yet!');
       this.router.navigate(['/login']);
     }
-
-
-
   }
 
   charStats() {
@@ -120,24 +194,22 @@ export class EvolutionComponent implements OnInit {
     let def = document.getElementById('def');
     let exp = document.getElementById('exp');
     user.innerText = this.playerService.player.name;
-    /*this.inputHelp(atk, def, exp);*/
     atk.innerText = this.playerService.player.atk;
     def.innerText = this.playerService.player.lp;
     exp.innerText = this.playerService.player.int;
     console.log(this.playerService.player.name, this.playerService.player.atk, this.playerService.player.lp, this.playerService.player.int);
   }
 
-  /*
   inputHelp(atk: HTMLElement, def: HTMLInputElement, exp:HTMLInputElement) {
     let x, y, z;
-
     x = this.playerService.player.atk;
     y = this.playerService.player.lp;
     z = this.playerService.player.int;
-
     atk.value = x;
     def.value = y;
     exp.value = z;
-  }*/
+  }
+  */
 
 }
+

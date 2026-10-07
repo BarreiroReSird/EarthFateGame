@@ -1,3 +1,4 @@
+// Author: Carlos Barreiro
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,26 +6,50 @@ import { Injectable } from '@angular/core';
 })
 export class PlayersService {
 
-  constructor(  ) { }
+  constructor() { }
 
-    /* Player data */
-    playerID: any;
+  /* Player account data */
+  playerID: any;
+  username: any;
+  password: any;
+  token: string | null = null;
 
-    /* Meus dados */
-    player: any = {
-    name: "myName",
+  /* My character stats */
+  player: any = {
+    name: "",
     id: "",
-    atk: "0",
-    isMonset: "",
-    int: "0",
-    lp: "0",
+    atk: 0,
+    intelligence: 0,
+    health: 0,
+    isMonster: false,
     img: "",
     idPlayer: "",
     weapon: "fists"
   };
 
-  /* my player data */
-  password: any;
-  username: any;
+  /*
+  OLD VERSION (PT string fields):
+
+  export class PlayersService {
+    constructor(  ) { }
+
+    playerID: any;
+
+    player: any = {
+      name: "myName",
+      id: "",
+      atk: "0",
+      isMonset: "",
+      int: "0",
+      lp: "0",
+      img: "",
+      idPlayer: "",
+      weapon: "fists"
+    };
+
+    password: any;
+    username: any;
+  }
+  */
 
 }

@@ -1,17 +1,75 @@
+// Author: Carlos Barreiro
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlayersService } from './players.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginsService {
 
+  private baseUrl = environment.production
+    ? 'https://your-api-domain.com/api/v1'
+    : 'http://localhost:3000/api/v1';
+
+  constructor(
+    private http: HttpClient,
+    private playerService: PlayersService) { }
+
+  private authHeaders(): HttpHeaders {
+    const token = this.playerService.token;
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : '',
+    });
+  }
+
+  login(user: string, pass: string) {
+    return this.http.post(`${this.baseUrl}/auth/login`, { username: user, password: pass });
+  }
+
+  register(user: string, pass: string) {
+    return this.http.post(`${this.baseUrl}/auth/signup`, { username: user, password: pass });
+  }
+
+  randomPlayer() {
+    return this.http.get(`${this.baseUrl}/characters/random`);
+  }
+
+  createChar(name: string, atk: number, intelligence: number, health: number) {
+    return this.http.post(`${this.baseUrl}/characters`, {
+      name,
+      atk,
+      intelligence,
+      health,
+    }, { headers: this.authHeaders() });
+  }
+
+  charStats(id: string) {
+    return this.http.get(`${this.baseUrl}/characters/${id}`, { headers: this.authHeaders() });
+  }
+
+  upgradeStats(id: string, atk: number, intelligence: number, health: number) {
+    return this.http.patch(`${this.baseUrl}/characters/${id}`, {
+      atk,
+      intelligence,
+      health,
+    }, { headers: this.authHeaders() });
+  }
+}
+
+/*
+OLD VERSION (old PHP API moreiramoises.pt with FormData and PT field names Nome/Atk/Int/Vida):
+
+import { HttpClient } from '@angular/common/http';
+
+export class LoginsService {
+
   constructor(
     private  http: HttpClient,
     private playerService: PlayersService) { }
 
-  /* Links */
   linkLogin: string = "http://moreiramoises.pt/server/apis/login.php";
   linkRegister: string = 'http://moreiramoises.pt/server/apis/signup.php';
   linkRandomPlayer: string = 'http://moreiramoises.pt/server/apis/get/getRandomChar.php?';
@@ -33,12 +91,10 @@ export class LoginsService {
     return this.http.post(this.linkRegister, dataToSend);
   }
 
-  /* Random player */
   randomPlayer() {
     return this.http.get(this.linkRandomPlayer);
   }
 
-  /* Create character */
   createChar(name, atk, int, vida, user, pass) {
     let dataToSend: FormData = new FormData();
     dataToSend.append('name', name);
@@ -51,12 +107,10 @@ export class LoginsService {
     return this.http.post(this.linkCreateChar, dataToSend);
   }
 
-  /* Char account id */
   charStats(id) {
     return this.http.get(this.linkCharStats + id);
   }
 
-  /* Upgrade char */
   upgradeStats(atk, int, vida) {
     let dataToSend: FormData = new FormData();
     dataToSend.append('idChar', this.playerService.player.id);
@@ -71,3 +125,5 @@ export class LoginsService {
   }
 
 }
+*/
+

@@ -1,3 +1,4 @@
+/*
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -18,3 +19,4 @@ export class ApiserviceService {
     return this.http.get(this.linkLogin, );
   }
 }
+*/
