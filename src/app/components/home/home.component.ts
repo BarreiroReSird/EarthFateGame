@@ -13,10 +13,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*
-  login(name, pass){
-    this.apiservice.doLogin
-  }
-  */
-
 }

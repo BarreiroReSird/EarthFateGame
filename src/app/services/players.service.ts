@@ -71,29 +71,4 @@ export class PlayersService {
     this.saveSession();
   }
 
-  /*
-  OLD VERSION (PT string fields):
-
-  export class PlayersService {
-    constructor(  ) { }
-
-    playerID: any;
-
-    player: any = {
-      name: "myName",
-      id: "",
-      atk: "0",
-      isMonset: "",
-      int: "0",
-      lp: "0",
-      img: "",
-      idPlayer: "",
-      weapon: "fists"
-    };
-
-    password: any;
-    username: any;
-  }
-  */
-
 }

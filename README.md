@@ -2,33 +2,44 @@
 
 Author: Carlos Barreiro
 
-Portfolio project. A simple browser game made with Angular 11 (RPG style: create character, train stats and fight random characters).
+Browser game made with Angular 11. RPG style: create character, train stats and fight random characters.
 
 Frontend: Angular 11.2.3
-Expected backend: API at localhost:3000/api/v1 (separate repository)
+Backend: API at localhost:3000/api/v1 (separate repository)
 
-## Run the project
+## Setup
 
 Install dependencies:
-```
+
+```bash
 npm install --legacy-peer-deps
 ```
 
 Start development server:
-```
+
+```bash
 ng serve
 ```
-Open in the browser `http://localhost:4200/`.
 
-## Node.js 17+ | Error ERR_OSSL_EVP_UNSUPPORTED
+Or start both frontend and backend together:
 
-Angular 11 uses an old webpack version. It does not work with OpenSSL 3, which is the default in Node 17 or newer. The project's `.npmrc` already sets:
+```bash
+npm run start:all
+```
+
+This runs Angular on `http://localhost:4200` and the API on `http://localhost:3000` in parallel.
+
+Open at `http://localhost:4200/`
+
+## Node.js 17+ OpenSSL Error
+
+Angular 11 uses an old webpack version that does not work with OpenSSL 3. The project `.npmrc` sets:
 
 ```
 node-options=--openssl-legacy-provider
 ```
 
-If you still see this error, set it manually before your command:
+If you still see the error, set it manually:
 
 Windows PowerShell:
 ```
@@ -42,25 +53,22 @@ export NODE_OPTIONS="--openssl-legacy-provider"
 
 ## Build
 
-```
+```bash
 ng build
 ```
 
 Production build:
 
-```
+```bash
 npm run build -- --prod
 ```
 
-The final files are stored in the `dist/` folder.
+Output is in the `dist/` folder.
 
 ## API URL
 
-- Development: `environment.ts` uses `http://localhost:3000/api/v1`.
-- Production: `environment.prod.ts` uses `/api/v1`, assuming the frontend and API are served from the same origin behind a reverse proxy.
+Development: `environment.ts` uses `http://localhost:3000/api/v1`
 
-If the API is deployed on a different domain, set the full URL in `environment.prod.ts` and add the frontend origin to the API's `CORS_ORIGIN`.
+Production: `environment.prod.ts` uses `/api/v1`, assuming frontend and API are served from the same origin behind a reverse proxy.
 
-## Notes
-
-This project was created with Angular CLI 11.2.3.
+If the API is on a different domain, set the full URL in `environment.prod.ts` and add the frontend origin to the API's `CORS_ORIGIN`.

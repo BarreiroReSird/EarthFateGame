@@ -19,19 +19,4 @@ export class AdversarysService {
     img: "",
     idPlayer: ""
   };
-
-  /*
-  OLD VERSION (PT string fields + typo isMonset):
-
-  player: any = {
-    name: "Dragon",
-    id: "",
-    atk: "",
-    isMonset: "",
-    int: "",
-    lp: "",
-    img: "",
-    idPlayer: ""
-  };
-  */
 }

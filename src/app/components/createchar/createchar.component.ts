@@ -57,26 +57,4 @@ export class CreatecharComponent implements OnInit {
       alert("Invalid data! Please try again with the correct data!");
     });
   }
-
-  /*
-  OLD VERSION createChar (old API with 6 args and status code check):
-
-  createChar(name, atk, int, lp, user, pass) {
-    this.loginService.createChar(name.value, atk.value, int.value, lp.value, user.value, pass.value).subscribe((data) => {
-      if (data['code'] == 200) {
-        console.log("Character created!");
-        this.router.navigate(['/login']);
-      } else {
-        console.log("Code:", data['code']);
-        console.log("Name:", name.value);
-        console.log("Atk:", atk.value);
-        console.log("Int:", int.value);
-        console.log("Lp:", lp.value);
-        console.log("User:", user.value);
-        console.log("Pass:", pass.value);
-        alert("Invalid data! Please try again with the correct data!");
-      }
-    });
-  }
-  */
 }

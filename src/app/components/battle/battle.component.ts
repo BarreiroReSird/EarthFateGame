@@ -53,15 +53,6 @@ export class BattleComponent implements OnInit {
     getReady5.classList.add("buttonBlock");
   }
 
-  /*
-  startFight(battleRunLeft: HTMLElement, battleRunRight: HTMLElement) {
-    battleRunLeft.classList.add("animate__bounce");
-    battleRunLeft.classList.add("animate__delay-2s");
-    battleRunRight.classList.add("animate__flash");
-    battleRunRight.classList.add("animate__delay-2s");
-  }
-  */
-
   charStats() {
     this.loginService.myCharacters().subscribe((characters: any) => {
       if (characters.length === 0) {
@@ -105,15 +96,7 @@ export class BattleComponent implements OnInit {
     advInt.innerText = this.adversaryService.player.intelligence;
   }
 
-  /*
-      let deadDragon: string = "https://img1.picmix.com/output/stamp/normal/0/6/9/5/1445960_c7bfa.gif";
-      let deadKnight: string = "https://img1.picmix.com/output/stamp/normal/5/4/9/5/1445945_6b7a4.gif";
-      let dead: boolean;
-  */
-
   fightTime(knightImage: HTMLElement, dragonImage: HTMLElement) {
-
-    /* Char stats */
 
     let dead: string = 'noOne';
 
@@ -131,14 +114,10 @@ export class BattleComponent implements OnInit {
     console.log(this.knightInitialAtck, '> knightInitialAtck');
     console.log(this.knightInteligence, '> knightInteligence');
 
-    /* Random number */
-
     let dragonRandomize: number = Math.floor(Math.random() * 100) + 1;
     let knightRandomize: number = Math.floor(Math.random() * 100) + 1;
     console.log(dragonRandomize, '> dragonRandomize');
     console.log(knightRandomize, '> knightRandomize');
-
-    /* New stats by inteligence */
 
     this.dragonInteligence = this.dragonInteligence / dragonRandomize;
     this.knightInteligence = this.knightInteligence / knightRandomize;
@@ -161,8 +140,6 @@ export class BattleComponent implements OnInit {
 
     this.fight2(knightImage, dragonImage);
 
-    /* battle */
-
     setTimeout(() => {
     while (dead == 'noOne') {
 
@@ -174,15 +151,12 @@ export class BattleComponent implements OnInit {
             this.isDead = true;
             console.log("Dragon dead");
             alert("You Win! The Dragon is dead!");
-            /*this.router.navigate(['/login']);*/
             dead = 'dragon';
-            /*break;*/
             return;
         } else {
           this.isDead = false;
           console.log("Dragon life:", dragonFightDef);
         }
-        console.log("Turn change (knight > dragon)");
 
         knightFightDef = knightFightDef - dragonFightAtk;
         console.log(knightFightDef, '> Remaining life')
@@ -191,26 +165,20 @@ export class BattleComponent implements OnInit {
             this.isDead = true;
             console.log("Knight dead");
             alert("You Lose! The dragon has slain you!");
-            /*this.router.navigate(['/login']);*/
             dead = 'knight';
-            /*break;*/
             return;
         } else {
           this.isDead = false;
           console.log("knight life:", knightFightDef);
         }
-
-        console.log("Turn change (dragon > knight)");
     }
     }, 4000);
   }
 
   fight2(knightImage, dragonImage){
     if(!this.isDead) {
-      /* knight attack */
       knightImage.classList.toggle("animate__bounce");
       dragonImage.classList.toggle("animate__flash");
-      /* dragon attack */
       setTimeout(() => {
       dragonImage.classList.toggle("animate__flash");
       knightImage.classList.toggle("animate__flash");
@@ -220,75 +188,8 @@ export class BattleComponent implements OnInit {
   }
 
   closetB() {
-    /* show closet (guns) */
 
   }
-
-  /*
-  OLD VERSION (if code==200, PT field names, Personagens[0], .int/.lp, typo isMonset, data['data'] wrapper):
-
-  charStats() {
-    this.loginService.charStats(this.playerService.playerID).subscribe((data) => {
-      if (data['code'] == 200) {
-        this.playerService.player.name = data['data'].Personagens[0].Nome;
-        this.playerService.player.id = data['data'].Personagens[0].ID;
-        this.playerService.player.atk = data['data'].Personagens[0].Atk;
-        this.playerService.player.isMonset = data['data'].Personagens[0].IsMonset;
-        this.playerService.player.int = data['data'].Personagens[0].Int;
-        this.playerService.player.lp = data['data'].Personagens[0].Vida;
-        this.playerService.player.img = data['data'].Personagens[0].Imagem;
-        this.playerService.player.idPlayer = data['data'].Personagens[0].ID_Player;
-        this.load();
-      }
-    });
-  }
-
-  randomPlayer() {
-    this.loginService.randomPlayer().subscribe((data) => {
-      if (data['code'] == 200) {
-        this.adversaryService.player.name = data['data'].Nome;
-        this.adversaryService.player.id = data['data'].ID;
-        this.adversaryService.player.atk = data['data'].Atk;
-        this.adversaryService.player.isMonset = data['data'].IsMonset;
-        this.adversaryService.player.int = data['data'].Int;
-        this.adversaryService.player.lp = data['data'].Vida;
-        this.adversaryService.player.img = data['data'].Imagem;
-        this.adversaryService.player.idPlayer = data['data'].ID_Player;
-        this.load();
-      }
-    })
-  }
-
-  load() {
-    let myPlayer: any = document.getElementById("myPlayer");
-    let adversary: any = document.getElementById("adversary");
-    myPlayer.innerText = this.playerService.player.name;
-    adversary.innerText = this.adversaryService.player.name;
-    let mpHP: any = document.getElementById("mpHP");
-    let advHP: any = document.getElementById("advHP");
-    mpHP.innerText = this.playerService.player.lp;
-    advHP.innerText = this.adversaryService.player.lp;
-    let mpAtk = document.getElementById('mpAtk');
-    let advAtk = document.getElementById('advAtk');
-    mpAtk.innerText = this.playerService.player.atk;
-    advAtk.innerText = this.adversaryService.player.atk;
-    let mpInt = document.getElementById('mpInt');
-    let advInt = document.getElementById('advInt');
-    mpInt.innerText = this.playerService.player.int;
-    advInt.innerText = this.adversaryService.player.int;
-  }
-
-  fightTime(knightImage: HTMLElement, dragonImage: HTMLElement) {
-    let dead: string = 'noOne';
-    this.dragonInitialLife = this.adversaryService.player.lp;
-    this.dragonInitialAtck = this.adversaryService.player.atk;
-    this.dragonInteligence = this.adversaryService.player.int;
-    this.knightInitialLife = this.playerService.player.lp;
-    this.knightInitialAtck = this.playerService.player.atk;
-    this.knightInteligence = this.playerService.player.int;
-    ...
-  }
-  */
 
 }
 
