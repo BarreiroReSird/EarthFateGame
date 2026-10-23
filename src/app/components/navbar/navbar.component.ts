@@ -18,13 +18,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('ef_token');
-    localStorage.removeItem('ef_playerID');
-    localStorage.removeItem('ef_username');
-    localStorage.removeItem('ef_character_id');
-    this.playerService.token = null;
-    this.playerService.playerID = null;
-    this.playerService.username = null;
+    this.playerService.clearSession();
     this.router.navigate(['/login']);
   }
 

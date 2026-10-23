@@ -87,15 +87,15 @@
 }
 
 .other1 {
-  top: 13rem;
+  top: 7rem;
 }
 
 .other2 {
-  top: 16rem;
+  top: 10rem;
 }
 
 .other3 {
-  top: 19rem;
+  top: 13rem;
 }
 
 .b1 {
@@ -115,20 +115,12 @@
   right: 18%;
 }
 
-.un {
+.cn {
   top: 4rem;
 }
 
-.pw {
-  top: 7rem;
-}
-
-.cn {
-  top: 10rem;
-}
-
 .btn {
-  top: 30rem;
+  top: 24rem;
   border-radius: 1.25rem;
   border: none;
 	background-color: green;

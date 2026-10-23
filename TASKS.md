@@ -10,7 +10,7 @@ Goal: the game talks to the new API at `http://localhost:3000/api/v1` instead of
 - [x] Store the JWT token after login/register and send it as `Authorization: Bearer <token>` on protected routes
 - [x] Update `players.service.ts` to work with the new response format (no more `data['code']` / `data['data']` wrapper)
 - [x] Update components that read `Personagens[0]` or Portuguese field names (`Nome`, `Atk`, `Int`, `Vida`, `ID_Player`) to use the new English field names (`name`, `atk`, `intelligence`, `health`, `idPlayer`)
-- [x] Remove or update `apiservice.service.ts` (dead code with hardcoded credentials - kept as commented)
+- [x] Remove `apiservice.service.ts` (dead code with hardcoded credentials)
 
 ### New API contract
 

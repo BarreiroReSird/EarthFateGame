@@ -16,7 +16,6 @@ export class PlayersService {
   /* Player account data */
   playerID: any;
   username: any;
-  password: any;
   token: string | null = null;
 
   /* My character stats */
@@ -37,6 +36,27 @@ export class PlayersService {
     localStorage.setItem('ef_playerID', this.playerID || '');
     localStorage.setItem('ef_username', this.username || '');
     localStorage.setItem('ef_character_id', this.player.id || '');
+  }
+
+  clearSession() {
+    localStorage.removeItem('ef_token');
+    localStorage.removeItem('ef_playerID');
+    localStorage.removeItem('ef_username');
+    localStorage.removeItem('ef_character_id');
+    this.token = null;
+    this.playerID = null;
+    this.username = null;
+    this.player = {
+      name: "",
+      id: "",
+      atk: 0,
+      intelligence: 0,
+      health: 0,
+      isMonster: false,
+      img: "",
+      idPlayer: "",
+      weapon: "fists"
+    };
   }
 
   setCharacter(character: any) {

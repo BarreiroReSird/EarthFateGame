@@ -9,9 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginsService {
 
-  private baseUrl = environment.production
-    ? 'https://your-api-domain.com/api/v1'
-    : 'http://localhost:3000/api/v1';
+  private baseUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,

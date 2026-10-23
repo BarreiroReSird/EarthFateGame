@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         this.playerService.token = data.token;
         this.playerService.username = user;
-        this.playerService.password = pass;
         this.playerService.playerID = data.id;
         this.playerService.saveSession();
         this.loginService.myCharacters().subscribe(
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
 
   errorMessage(err: any): string {
     if (err && err.status === 0) {
-      return "Cannot reach the server. Is the API running on localhost:3000?";
+      return "Cannot reach the server. Please try again.";
     }
     if (err && err.error && typeof err.error.error === 'string') {
       return err.error.error;
@@ -66,7 +65,6 @@ export class LoginComponent implements OnInit {
       this.loginService.register(user, pass).subscribe((data: any) => {
         this.playerService.token = data.token;
         this.playerService.username = user;
-        this.playerService.password = pass;
         this.playerService.playerID = data.id;
         this.playerService.saveSession();
         this.router.navigate(['/creation']);
