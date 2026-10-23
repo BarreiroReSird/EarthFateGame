@@ -36,6 +36,7 @@ export class PlayersService {
     localStorage.setItem('ef_playerID', this.playerID || '');
     localStorage.setItem('ef_username', this.username || '');
     localStorage.setItem('ef_character_id', this.player.id || '');
+    localStorage.setItem('ef_token_time', Date.now().toString());
   }
 
   clearSession() {
@@ -43,6 +44,7 @@ export class PlayersService {
     localStorage.removeItem('ef_playerID');
     localStorage.removeItem('ef_username');
     localStorage.removeItem('ef_character_id');
+    localStorage.removeItem('ef_token_time');
     this.token = null;
     this.playerID = null;
     this.username = null;
@@ -57,6 +59,17 @@ export class PlayersService {
       idPlayer: "",
       weapon: "fists"
     };
+  }
+
+  isTokenExpired(): boolean {
+    const tokenTime = localStorage.getItem('ef_token_time');
+    if (!tokenTime) return true;
+
+    const tokenTimestamp = parseInt(tokenTime, 10);
+    const now = Date.now();
+    const twentyFourHours = 24 * 60 * 60 * 1000;
+
+    return (now - tokenTimestamp) > twentyFourHours;
   }
 
   setCharacter(character: any) {

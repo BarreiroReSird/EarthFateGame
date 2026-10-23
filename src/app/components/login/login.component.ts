@@ -49,6 +49,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  checkSession() {
+    if (this.playerService.isTokenExpired()) {
+      this.playerService.clearSession();
+      this.router.navigate(['/login']);
+    }
+  }
+
   errorMessage(err: any): string {
     if (err && err.status === 0) {
       return "Cannot reach the server. Please try again.";
