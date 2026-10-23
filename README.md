@@ -1,27 +1,74 @@
 # EarthFate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+Author: Carlos Barreiro
 
-## Development server
+Browser game made with Angular 11. RPG style: create character, train stats and fight random characters.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Frontend: Angular 11.2.3
+Backend: API at localhost:3000/api/v1 (separate repository)
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install dependencies:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+Start development server:
+
+```bash
+ng serve
+```
+
+Or start both frontend and backend together:
+
+```bash
+npm run start:all
+```
+
+This runs Angular on `http://localhost:4200` and the API on `http://localhost:3000` in parallel.
+
+Open at `http://localhost:4200/`
+
+## Node.js 17+ OpenSSL Error
+
+Angular 11 uses an old webpack version that does not work with OpenSSL 3. The project `.npmrc` sets:
+
+```
+node-options=--openssl-legacy-provider
+```
+
+If you still see the error, set it manually:
+
+Windows PowerShell:
+```
+$env:NODE_OPTIONS="--openssl-legacy-provider"
+```
+
+Linux / macOS:
+```
+export NODE_OPTIONS="--openssl-legacy-provider"
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+ng build
+```
 
-## Running unit tests
+Production build:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm run build -- --prod
+```
 
-## Running end-to-end tests
+Output is in the `dist/` folder.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## API URL
 
-## Further help
+Development: `environment.ts` uses `http://localhost:3000/api/v1`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Production: `environment.prod.ts` uses `/api/v1`, assuming frontend and API are served from the same origin behind a reverse proxy.
+
+If the API is on a different domain, set the full URL in `environment.prod.ts` and add the frontend origin to the API's `CORS_ORIGIN`.

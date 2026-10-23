@@ -1,8 +1,8 @@
+// Author: Carlos Barreiro
 import { Component, OnInit } from '@angular/core';
 import { LoginsService } from 'src/app/services/logins.service';
 import { Router } from '@angular/router';
 import { PlayersService } from 'src/app/services/players.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -26,36 +26,63 @@ export class LoginComponent implements OnInit {
 
   login(user: any, pass: any) {
     this.loginService.login(user, pass).subscribe(
-      (data) => {
-        if (data['code'] == 200) {
-          this.playerService.playerID = data['data'];
-          console.log('Player ID:')
-          console.log(this.playerService.playerID);
-          this.router.navigate(['/home']);
-        } else {
-          alert("Invalid data! Please try again with the correct data!");
-        }
+      (data: any) => {
+        this.playerService.token = data.token;
+        this.playerService.username = user;
+        this.playerService.playerID = data.id;
+        this.playerService.saveSession();
+        this.loginService.myCharacters().subscribe(
+          (characters: any) => {
+            if (characters.length > 0) {
+              this.playerService.setCharacter(characters[0]);
+              this.router.navigate(['/home']);
+            } else {
+              this.router.navigate(['/creation']);
+            }
+          },
+          (err: any) => {
+            this.playerService.clearSession();
+            alert(this.errorMessage(err));
+          }
+        );
+      },
+      (err: any) => {
+        alert(this.errorMessage(err));
       }
     );
   }
 
+  checkSession() {
+    if (this.playerService.isTokenExpired()) {
+      this.playerService.clearSession();
+      this.router.navigate(['/login']);
+    }
+  }
+
+  errorMessage(err: any): string {
+    if (err && err.status === 0) {
+      return "Cannot reach the server. Please try again.";
+    }
+    if (err && err.error && typeof err.error.error === 'string') {
+      return err.error.error;
+    }
+    return "Invalid data! Please try again with the correct data!";
+  }
+
   register(user: any, pass: any, passC: HTMLInputElement) {
     if (pass == passC.value) {
-      console.log("user", user);
-      console.log("pass", pass);
-      console.log("passC", passC.value);
-      this.loginService.register(user, pass).subscribe((data) => {
-        console.log(data['code']);
-        if (data['code'] == 200) {
-          this.router.navigate(['/creation']);
-        } else {
-          alert("Invalid data! Please try again with the correct data!");
-
-        }
+      this.loginService.register(user, pass).subscribe((data: any) => {
+        this.playerService.token = data.token;
+        this.playerService.username = user;
+        this.playerService.playerID = data.id;
+        this.playerService.saveSession();
+        this.router.navigate(['/creation']);
+      }, (err: any) => {
+        alert(this.errorMessage(err));
       });
     } else {
-      console.log("pass", pass,"passC",passC);
       alert("Invalid password data! Please try again with the correct data!");
     }
   }
+
 }

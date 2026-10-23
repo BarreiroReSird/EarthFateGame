@@ -1,4 +1,7 @@
+// Author: Carlos Barreiro
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PlayersService } from 'src/app/services/players.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public playerService: PlayersService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.playerService.clearSession();
+    this.router.navigate(['/login']);
   }
 
 }

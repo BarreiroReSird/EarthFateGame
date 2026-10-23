@@ -36,11 +36,21 @@ speed-measure-plugin*.json
 /connect.lock
 /coverage
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
 testem.log
 /typings
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# JS logs (any tool)
+*.log
+
+# Angular CLI cache (versions 13+)
+.angular/
+
+# Local environment variable files
+# Do not commit secret keys or sensitive local URLs
+.env
+.env.local
+.env.*.local

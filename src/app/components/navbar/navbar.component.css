@@ -34,4 +34,15 @@ a {
   padding: 10px;
   color: white;
   text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.375rem;
+  font-weight: bold;
 }

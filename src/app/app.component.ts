@@ -1,3 +1,4 @@
+// Author: Carlos Barreiro
 import { Component } from '@angular/core';
 
 @Component({

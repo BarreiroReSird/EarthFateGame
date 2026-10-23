@@ -5,11 +5,10 @@
     src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0007/7033/brand.gif?itok=GOWAkJCd"
   />
   <span>Welcome to Earth Fate</span>
-  <div class="navlinks">
-    <!-- <a [routerLink]="['login']" routerLinkActive="activePage">Login </a> -->
+  <div class="navlinks" *ngIf="playerService.token">
     <a [routerLink]="['home']" routerLinkActive="activePage">Home </a>
     <a [routerLink]="['battle']" routerLinkActive="activePage">Battle </a>
     <a [routerLink]="['evolution']" routerLinkActive="activePage">Evolution </a>
-    <!-- <a [routerLink]="['login']" routerLinkActive="activePage">Leave Game </a> -->
+    <button (click)="logout()">Leave Game</button>
   </div>
 </div>

@@ -1,73 +1,63 @@
+// Author: Carlos Barreiro
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlayersService } from './players.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginsService {
 
+  private baseUrl = environment.apiUrl;
+
   constructor(
-    private  http: HttpClient,
+    private http: HttpClient,
     private playerService: PlayersService) { }
 
-  /* Links */
-  linkLogin: string = "http://moreiramoises.pt/server/apis/login.php";
-  linkRegister: string = 'http://moreiramoises.pt/server/apis/signup.php';
-  linkRandomPlayer: string = 'http://moreiramoises.pt/server/apis/get/getRandomChar.php?';
-  linkCreateChar: string = 'http://moreiramoises.pt/server/apis/createChart.php';
-  linkCharStats: string = 'http://moreiramoises.pt/server/apis/get/getChar.php?PlayerID=';
-  linkUpgrade: string = 'http://moreiramoises.pt/server/apis/updateChart.php';
-
-  login(user: any, pass: any) {
-    let dataToSend: FormData = new FormData();
-    dataToSend.append("username", user);
-    dataToSend.append("password", pass);
-    return this.http.post(this.linkLogin, dataToSend);
+  private authHeaders(): HttpHeaders {
+    const token = this.playerService.token;
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : '',
+    });
   }
 
-  register(user, pass) {
-    let dataToSend: FormData = new FormData();
-    dataToSend.append('username', user);
-    dataToSend.append('password', pass);
-    return this.http.post(this.linkRegister, dataToSend);
+  login(user: string, pass: string) {
+    return this.http.post(`${this.baseUrl}/auth/login`, { username: user, password: pass });
   }
 
-  /* Random player */
+  register(user: string, pass: string) {
+    return this.http.post(`${this.baseUrl}/auth/signup`, { username: user, password: pass });
+  }
+
   randomPlayer() {
-    return this.http.get(this.linkRandomPlayer);
+    return this.http.get(`${this.baseUrl}/characters/random`, { headers: this.authHeaders() });
   }
 
-  /* Create character */
-  createChar(name, atk, int, vida, user, pass) {
-    let dataToSend: FormData = new FormData();
-    dataToSend.append('name', name);
-    dataToSend.append('atk', atk);
-    dataToSend.append('isMonster', 'false');
-    dataToSend.append('int', int);
-    dataToSend.append('vida', vida);
-    dataToSend.append('username', user);
-    dataToSend.append('password', pass);
-    return this.http.post(this.linkCreateChar, dataToSend);
+  myCharacters() {
+    return this.http.get(`${this.baseUrl}/characters`, { headers: this.authHeaders() });
   }
 
-  /* Char account id */
-  charStats(id) {
-    return this.http.get(this.linkCharStats + id);
+  createChar(name: string, atk: number, intelligence: number, health: number) {
+    return this.http.post(`${this.baseUrl}/characters`, {
+      name,
+      atk,
+      intelligence,
+      health,
+    }, { headers: this.authHeaders() });
   }
 
-  /* Upgrade char */
-  upgradeStats(atk, int, vida) {
-    let dataToSend: FormData = new FormData();
-    dataToSend.append('idChar', this.playerService.player.id);
-    dataToSend.append('name', this.playerService.player.name);
-    dataToSend.append('atk', atk);
-    dataToSend.append('isMonster', 'false');
-    dataToSend.append('int', int);
-    dataToSend.append('vida', vida);
-    dataToSend.append('username', this.playerService.username);
-    dataToSend.append('password', this.playerService.password);
-    return this.http.post(this.linkUpgrade, dataToSend);
+  charStats(id: string) {
+    return this.http.get(`${this.baseUrl}/characters/${id}`, { headers: this.authHeaders() });
   }
 
+  upgradeStats(id: string, atk: number, intelligence: number, health: number) {
+    return this.http.patch(`${this.baseUrl}/characters/${id}`, {
+      atk,
+      intelligence,
+      health,
+    }, { headers: this.authHeaders() });
+  }
 }
+

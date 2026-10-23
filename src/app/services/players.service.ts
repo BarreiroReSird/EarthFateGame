@@ -1,3 +1,4 @@
+// Author: Carlos Barreiro
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,26 +6,82 @@ import { Injectable } from '@angular/core';
 })
 export class PlayersService {
 
-  constructor(  ) { }
+  constructor() {
+    this.token = localStorage.getItem('ef_token');
+    this.playerID = localStorage.getItem('ef_playerID');
+    this.username = localStorage.getItem('ef_username');
+    this.player.id = localStorage.getItem('ef_character_id') || '';
+  }
 
-    /* Player data */
-    playerID: any;
+  /* Player account data */
+  playerID: any;
+  username: any;
+  token: string | null = null;
 
-    /* Meus dados */
-    player: any = {
-    name: "myName",
+  /* My character stats */
+  player: any = {
+    name: "",
     id: "",
-    atk: "0",
-    isMonset: "",
-    int: "0",
-    lp: "0",
+    atk: 0,
+    intelligence: 0,
+    health: 0,
+    isMonster: false,
     img: "",
     idPlayer: "",
     weapon: "fists"
   };
 
-  /* my player data */
-  password: any;
-  username: any;
+  saveSession() {
+    localStorage.setItem('ef_token', this.token || '');
+    localStorage.setItem('ef_playerID', this.playerID || '');
+    localStorage.setItem('ef_username', this.username || '');
+    localStorage.setItem('ef_character_id', this.player.id || '');
+    localStorage.setItem('ef_token_time', Date.now().toString());
+  }
+
+  clearSession() {
+    localStorage.removeItem('ef_token');
+    localStorage.removeItem('ef_playerID');
+    localStorage.removeItem('ef_username');
+    localStorage.removeItem('ef_character_id');
+    localStorage.removeItem('ef_token_time');
+    this.token = null;
+    this.playerID = null;
+    this.username = null;
+    this.player = {
+      name: "",
+      id: "",
+      atk: 0,
+      intelligence: 0,
+      health: 0,
+      isMonster: false,
+      img: "",
+      idPlayer: "",
+      weapon: "fists"
+    };
+  }
+
+  isTokenExpired(): boolean {
+    const tokenTime = localStorage.getItem('ef_token_time');
+    if (!tokenTime) return true;
+
+    const tokenTimestamp = parseInt(tokenTime, 10);
+    const now = Date.now();
+    const twentyFourHours = 24 * 60 * 60 * 1000;
+
+    return (now - tokenTimestamp) > twentyFourHours;
+  }
+
+  setCharacter(character: any) {
+    this.player.name = character.name;
+    this.player.id = character.id;
+    this.player.atk = character.atk;
+    this.player.isMonster = character.isMonster;
+    this.player.intelligence = character.intelligence;
+    this.player.health = character.health;
+    this.player.img = character.img;
+    this.player.idPlayer = character.idPlayer;
+    this.saveSession();
+  }
 
 }
