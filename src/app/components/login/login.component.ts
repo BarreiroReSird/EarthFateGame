@@ -40,7 +40,10 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/creation']);
             }
           },
-          () => this.router.navigate(['/home'])
+          (err: any) => {
+            this.playerService.clearSession();
+            alert(this.errorMessage(err));
+          }
         );
       },
       (err: any) => {

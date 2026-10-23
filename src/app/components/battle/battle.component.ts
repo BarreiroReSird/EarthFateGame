@@ -54,11 +54,11 @@ export class BattleComponent implements OnInit {
   }
 
   charStats() {
-    this.loginService.myCharacters().subscribe((characters: any) => {
-      if (characters.length === 0) {
-        return;
-      }
-      this.playerService.setCharacter(characters[0]);
+    if (!this.playerService.player.id) {
+      return;
+    }
+    this.loginService.charStats(this.playerService.player.id).subscribe((character: any) => {
+      this.playerService.setCharacter(character);
       this.load();
     });
   }

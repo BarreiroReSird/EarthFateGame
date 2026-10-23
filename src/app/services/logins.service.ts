@@ -32,7 +32,7 @@ export class LoginsService {
   }
 
   randomPlayer() {
-    return this.http.get(`${this.baseUrl}/characters/random`);
+    return this.http.get(`${this.baseUrl}/characters/random`, { headers: this.authHeaders() });
   }
 
   myCharacters() {

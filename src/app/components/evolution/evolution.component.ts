@@ -3,7 +3,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LoginsService } from 'src/app/services/logins.service';
 import { PlayersService } from 'src/app/services/players.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-evolution',
@@ -13,7 +12,6 @@ import { HttpClient } from '@angular/common/http';
 export class EvolutionComponent implements OnInit {
 
   constructor(
-    http: HttpClient,
     router: Router,
     private loginService: LoginsService,
     private playerService: PlayersService) {
@@ -85,11 +83,11 @@ export class EvolutionComponent implements OnInit {
   }
 
   charStats() {
-    this.loginService.myCharacters().subscribe((characters: any) => {
-      if (characters.length === 0) {
-        return;
-      }
-      this.playerService.setCharacter(characters[0]);
+    if (!this.playerService.player.id) {
+      return;
+    }
+    this.loginService.charStats(this.playerService.player.id).subscribe((character: any) => {
+      this.playerService.setCharacter(character);
       this.load();
     });
   }
@@ -100,25 +98,11 @@ export class EvolutionComponent implements OnInit {
     let def = document.getElementById('def');
     let exp = document.getElementById('exp');
     user.innerText = this.playerService.player.name;
-    /*this.inputHelp(atk, def, exp);*/
     atk.innerText = this.playerService.player.atk;
     def.innerText = this.playerService.player.health;
     exp.innerText = this.playerService.player.intelligence;
     console.log(this.playerService.player.name, this.playerService.player.atk, this.playerService.player.health, this.playerService.player.intelligence);
   }
-
-  /*
-  inputHelp(atk: HTMLElement, def: HTMLInputElement, exp:HTMLInputElement) {
-    let x, y, z;
-
-    x = this.playerService.player.atk;
-    y = this.playerService.player.health;
-    z = this.playerService.player.intelligence;
-
-    atk.value = x;
-    def.value = y;
-    exp.value = z;
-  }*/
 
 }
 
