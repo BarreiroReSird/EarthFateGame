@@ -51,14 +51,7 @@ export class CreatecharComponent implements OnInit {
 
   createChar(name, atk, int, lp) {
     this.loginService.createChar(name.value, parseInt(atk.value), parseInt(int.value), parseInt(lp.value)).subscribe((data: any) => {
-      this.playerService.player.name = data.name;
-      this.playerService.player.id = data.id;
-      this.playerService.player.atk = data.atk;
-      this.playerService.player.isMonster = data.isMonster;
-      this.playerService.player.intelligence = data.intelligence;
-      this.playerService.player.health = data.health;
-      this.playerService.player.img = data.img;
-      this.playerService.player.idPlayer = data.idPlayer;
+      this.playerService.setCharacter(data);
       this.router.navigate(['/evolution']);
     }, () => {
       alert("Invalid data! Please try again with the correct data!");

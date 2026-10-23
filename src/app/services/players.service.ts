@@ -6,7 +6,12 @@ import { Injectable } from '@angular/core';
 })
 export class PlayersService {
 
-  constructor() { }
+  constructor() {
+    this.token = localStorage.getItem('ef_token');
+    this.playerID = localStorage.getItem('ef_playerID');
+    this.username = localStorage.getItem('ef_username');
+    this.player.id = localStorage.getItem('ef_character_id') || '';
+  }
 
   /* Player account data */
   playerID: any;
@@ -26,6 +31,25 @@ export class PlayersService {
     idPlayer: "",
     weapon: "fists"
   };
+
+  saveSession() {
+    localStorage.setItem('ef_token', this.token || '');
+    localStorage.setItem('ef_playerID', this.playerID || '');
+    localStorage.setItem('ef_username', this.username || '');
+    localStorage.setItem('ef_character_id', this.player.id || '');
+  }
+
+  setCharacter(character: any) {
+    this.player.name = character.name;
+    this.player.id = character.id;
+    this.player.atk = character.atk;
+    this.player.isMonster = character.isMonster;
+    this.player.intelligence = character.intelligence;
+    this.player.health = character.health;
+    this.player.img = character.img;
+    this.player.idPlayer = character.idPlayer;
+    this.saveSession();
+  }
 
   /*
   OLD VERSION (PT string fields):

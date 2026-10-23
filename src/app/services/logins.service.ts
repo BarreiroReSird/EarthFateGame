@@ -37,6 +37,10 @@ export class LoginsService {
     return this.http.get(`${this.baseUrl}/characters/random`);
   }
 
+  myCharacters() {
+    return this.http.get(`${this.baseUrl}/characters`, { headers: this.authHeaders() });
+  }
+
   createChar(name: string, atk: number, intelligence: number, health: number) {
     return this.http.post(`${this.baseUrl}/characters`, {
       name,

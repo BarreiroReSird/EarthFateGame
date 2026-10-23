@@ -32,12 +32,33 @@ export class LoginComponent implements OnInit {
         this.playerService.username = user;
         this.playerService.password = pass;
         this.playerService.playerID = data.id;
-        this.router.navigate(['/home']);
+        this.playerService.saveSession();
+        this.loginService.myCharacters().subscribe(
+          (characters: any) => {
+            if (characters.length > 0) {
+              this.playerService.setCharacter(characters[0]);
+              this.router.navigate(['/home']);
+            } else {
+              this.router.navigate(['/creation']);
+            }
+          },
+          () => this.router.navigate(['/home'])
+        );
       },
-      () => {
-        alert("Invalid data! Please try again with the correct data!");
+      (err: any) => {
+        alert(this.errorMessage(err));
       }
     );
+  }
+
+  errorMessage(err: any): string {
+    if (err && err.status === 0) {
+      return "Cannot reach the server. Is the API running on localhost:3000?";
+    }
+    if (err && err.error && typeof err.error.error === 'string') {
+      return err.error.error;
+    }
+    return "Invalid data! Please try again with the correct data!";
   }
 
   register(user: any, pass: any, passC: HTMLInputElement) {
@@ -47,9 +68,10 @@ export class LoginComponent implements OnInit {
         this.playerService.username = user;
         this.playerService.password = pass;
         this.playerService.playerID = data.id;
+        this.playerService.saveSession();
         this.router.navigate(['/creation']);
-      }, () => {
-        alert("Invalid data! Please try again with the correct data!");
+      }, (err: any) => {
+        alert(this.errorMessage(err));
       });
     } else {
       alert("Invalid password data! Please try again with the correct data!");

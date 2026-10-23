@@ -45,63 +45,51 @@ export class EvolutionComponent implements OnInit {
     nb.value = y;
   }
 
-  oneDayHasPassed() {
-    var dt = new Date().toLocaleDateString();
-    if (localStorage.yourapp_date == dt) {
-      return false;
-    }
-    localStorage.yourapp_date = dt;
-    return true;
+  canTrainToday() {
+    return localStorage.yourapp_date !== new Date().toLocaleDateString();
   }
 
   upgradeTime(nbA: HTMLInputElement, nbE: HTMLInputElement, nbD: HTMLInputElement) {
 
-    if (!this.oneDayHasPassed()) {
-      let xVal = 0;
-      let yVal = 0;
-      let zVal = 0;
-      let tot = 0;
-
-      xVal = parseInt(nbA.value);
-      yVal = parseInt(nbE.value);
-      zVal = parseInt(nbD.value);
-      tot = xVal + yVal + zVal;
-
-      console.log('x y z', xVal, yVal, zVal);
-
-      /* upgrade */
-      if (tot == 3) {
-        this.loginService.upgradeStats(
-          this.playerService.player.id,
-          parseInt(this.playerService.player.atk) + xVal,
-          parseInt(this.playerService.player.intelligence) + yVal,
-          parseInt(this.playerService.player.health) + zVal).
-          subscribe(() => {
-            this.charStats();
-            this.load();
-          });
-      } else {
-        alert('Values are not 3!');
-      }
-    } else {
-      alert('You can only train once a day, and it has not been a full day yet!');
-      this.router.navigate(['/login']);
+    if (!this.canTrainToday()) {
+      alert('You can only train once a day. Come back tomorrow!');
+      return;
     }
 
+    let xVal = 0;
+    let yVal = 0;
+    let zVal = 0;
+    let tot = 0;
 
+    xVal = parseInt(nbA.value);
+    yVal = parseInt(nbE.value);
+    zVal = parseInt(nbD.value);
+    tot = xVal + yVal + zVal;
 
+    console.log('x y z', xVal, yVal, zVal);
+
+    /* upgrade */
+    if (tot == 3) {
+      this.loginService.upgradeStats(
+        this.playerService.player.id,
+        parseInt(this.playerService.player.atk) + xVal,
+        parseInt(this.playerService.player.intelligence) + yVal,
+        parseInt(this.playerService.player.health) + zVal).
+        subscribe(() => {
+          localStorage.yourapp_date = new Date().toLocaleDateString();
+          this.charStats();
+        });
+    } else {
+      alert('Values are not 3!');
+    }
   }
 
   charStats() {
-    this.loginService.charStats(this.playerService.playerID).subscribe((data: any) => {
-      this.playerService.player.name = data.name;
-      this.playerService.player.id = data.id;
-      this.playerService.player.atk = data.atk;
-      this.playerService.player.isMonster = data.isMonster;
-      this.playerService.player.intelligence = data.intelligence;
-      this.playerService.player.health = data.health;
-      this.playerService.player.img = data.img;
-      this.playerService.player.idPlayer = data.idPlayer;
+    this.loginService.myCharacters().subscribe((characters: any) => {
+      if (characters.length === 0) {
+        return;
+      }
+      this.playerService.setCharacter(characters[0]);
       this.load();
     });
   }

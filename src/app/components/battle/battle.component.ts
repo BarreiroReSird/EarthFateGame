@@ -63,15 +63,11 @@ export class BattleComponent implements OnInit {
   */
 
   charStats() {
-    this.loginService.charStats(this.playerService.playerID).subscribe((data: any) => {
-      this.playerService.player.name = data.name;
-      this.playerService.player.id = data.id;
-      this.playerService.player.atk = data.atk;
-      this.playerService.player.isMonster = data.isMonster;
-      this.playerService.player.intelligence = data.intelligence;
-      this.playerService.player.health = data.health;
-      this.playerService.player.img = data.img;
-      this.playerService.player.idPlayer = data.idPlayer;
+    this.loginService.myCharacters().subscribe((characters: any) => {
+      if (characters.length === 0) {
+        return;
+      }
+      this.playerService.setCharacter(characters[0]);
       this.load();
     });
   }
